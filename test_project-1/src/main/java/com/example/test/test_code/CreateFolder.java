@@ -43,7 +43,7 @@ public class CreateFolder {
 			System.out.println("フォルダーの監視を開始: " + folderPath.toAbsolutePath());
 
 			while (running.get()) {
-				WatchKey key = watchService.poll();
+				WatchKey key = watchService.take();
 				if (key == null) {
 					Thread.sleep(500); // CPU負荷軽減
 					continue;
