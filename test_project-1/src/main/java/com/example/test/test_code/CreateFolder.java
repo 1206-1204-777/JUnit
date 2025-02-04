@@ -16,7 +16,7 @@ public class CreateFolder {
 	private Path newFolderPath;
 	private final AtomicBoolean running = new AtomicBoolean(true);
 
-	public void foldeWriter(String folderName) {
+	public void folderWriter(String folderName) {
 		this.folderPath = Paths.get(folderName);
 		this.newFolderPath = folderPath.resolve("test2");
 
