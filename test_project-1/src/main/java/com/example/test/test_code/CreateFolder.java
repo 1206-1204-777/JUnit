@@ -16,7 +16,7 @@ public class CreateFolder {
 	private Path newFolderPath;
 	private final AtomicBoolean running = new AtomicBoolean(true);
 
-	public void foldeWriter(String folderName) {
+	public void folderWriter(String folderName) {
 		this.folderPath = Paths.get(folderName);
 		this.newFolderPath = folderPath.resolve("test2");
 
@@ -43,7 +43,7 @@ public class CreateFolder {
 			System.out.println("フォルダーの監視を開始: " + folderPath.toAbsolutePath());
 
 			while (running.get()) {
-				WatchKey key = watchService.poll();
+				WatchKey key = watchService.take();
 				if (key == null) {
 					Thread.sleep(500); // CPU負荷軽減
 					continue;

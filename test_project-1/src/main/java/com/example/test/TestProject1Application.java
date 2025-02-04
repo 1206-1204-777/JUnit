@@ -11,7 +11,7 @@ public class TestProject1Application {
 	public static void main(String[] args) {
 	//	SpringApplication.run(TestProject1Application.class, args);
 		CreateFolder createFolder = new CreateFolder();
-		createFolder.foldeWriter("tester");
+		createFolder.folderWriter("tester");
 		createFolder.watchFolder();
 	}
 
