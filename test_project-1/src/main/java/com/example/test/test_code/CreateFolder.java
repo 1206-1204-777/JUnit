@@ -38,7 +38,7 @@ public class CreateFolder {
 	public void watchFolder() {
 		try (WatchService watchService = FileSystems.getDefault().newWatchService()) {
 			folderPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
-			
+
 			// **追記: 監視対象のフォルダを表示**
 			System.out.println("フォルダーの監視を開始: " + folderPath.toAbsolutePath());
 
@@ -63,10 +63,6 @@ public class CreateFolder {
 		} catch (IOException | InterruptedException e) {
 			System.err.println("エラー: " + e.getMessage());
 		}
-	}
 
-	public void stopWatching() {
-		// TODO 自動生成されたメソッド・スタブ
-		
 	}
 }
