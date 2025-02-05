@@ -28,6 +28,8 @@ public class Tester {
 		System.setOut(originalOut);
 		String ouput = outputStream.toString().trim();
 		assertEquals(ouput,"test");
+		
+		
 
 	}
 }
