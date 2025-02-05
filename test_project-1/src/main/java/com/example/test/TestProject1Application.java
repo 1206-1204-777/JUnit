@@ -1,18 +1,20 @@
 package com.example.test;
 
-//import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.test.test_code.CreateFolder;
+import com.example.test.test_code.Test_Code;
+
+
 
 @SpringBootApplication
 public class TestProject1Application {
 
 	public static void main(String[] args) {
-	//	SpringApplication.run(TestProject1Application.class, args);
-		CreateFolder createFolder = new CreateFolder();
-		createFolder.folderWriter("tester");
-		createFolder.watchFolder();
+
+		Test_Code async = new Test_Code();
+		async.start();
+		
+		System.out.println("test");
 	}
 
 }
