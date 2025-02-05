@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,12 +25,20 @@ public class Create_fileTester {
 
     @BeforeEach
     public void setUp() throws IOException {
-        Files.createDirectories(Paths.get(TEST_FOLDER)); // テスト用フォルダを作成
+        Files.createDirectories(Paths.get(TEST_FOLDER));
         createFolder = new CreateFolder();
-        createFolder.folderWriter(TEST_FOLDER); // `folderPath` の初期化を確実に実行
+        createFolder.folderWriter(TEST_FOLDER);
+        
         executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> createFolder.watchFolder());
+        Future<?> future = executor.submit(() -> createFolder.watchFolder());
+        
+        try {
+            future.get(); // 例外が発生した場合、ここでキャッチされる
+        } catch (Exception e) {
+            throw new RuntimeException("watchFolder() 内で例外発生", e);
+        }
     }
+
 
     @AfterEach
     public void tearDown() throws IOException {
@@ -55,14 +64,9 @@ public class Create_fileTester {
 
         // テストフォルダー内にファイルを作成
         Files.createFile(path);
-
+        Files.exists(path2);
         // `test2` フォルダー作成完了まで最大50秒待機
-        for (int i = 0; i < 10; i++) {
-            if (Files.exists(path2)) {
-                break;
-            }
-            Thread.sleep(1000);
-        }
+
 
         assertTrue(Files.exists(path), "テストファイルが存在しない");
         assertTrue(Files.exists(path2), "監視によるフォルダ 'test2' が作成されていない");
