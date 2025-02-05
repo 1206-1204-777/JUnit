@@ -9,7 +9,7 @@ public class Test_Code extends Thread{
 	public void run() {
 		try {
 			Thread.sleep(2000);
-			System.out.println("test" + Thread.currentThread().getName());
+			System.out.println("test");
 		} catch (InterruptedException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
