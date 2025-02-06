@@ -15,7 +15,7 @@ public class TestProject1Application {
 		test.start();
 		thread.start();
 		
-		System.out.println("通常処理："+test.add(10, 20));
+		System.out.println("通常処理："+test.add(20, 20));
 	}
 
 }
