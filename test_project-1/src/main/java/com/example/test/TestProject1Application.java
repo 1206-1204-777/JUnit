@@ -1,7 +1,5 @@
 package com.example.test;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.test.test_code.Runnble;
@@ -19,25 +17,7 @@ public class TestProject1Application {
 		
 		System.out.println("通常処理："+test.add(20, 20));
 		
-		CompletableFuture.supplyAsync(() -> {
-			return "Hello";
-		}).thenAccept(result -> {
-			System.out.println(result);
-		});
 		
-		CompletableFuture.supplyAsync(() -> fetchData())
-		.thenCompose(data -> processdata(data))
-		.thenAccept(result1 -> System.out.println("result"));
-		
-		
-		}
-	//データの取得
-	static String fetchData() {
-		return "date";
-	}
-	//データの加工	
-	static CompletableFuture<String> processdata(String data){
-		return CompletableFuture.supplyAsync(() -> data);
 	}
 
 }
