@@ -5,19 +5,26 @@ import java.util.concurrent.CompletableFuture;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.test.test_code.Runnble;
-import com.example.test.test_code.Test_Code;
+import com.example.test.test_code.TestCode;
 
 @SpringBootApplication
 public class TestProject1Application {
-
+	
 	public static void main(String[] args) {
 
 		Thread thread = new Thread(new Runnble());
-		Test_Code test = new Test_Code();
+		TestCode test = new TestCode();
 		test.start();
 		thread.start();
 
 		System.out.println("通常処理：" + test.add(20, 20));
+		
+		Runnable runnable = () -> System.out.println("Hello, world!");
+		runnable.run();
+		
+		TestCode num = (new TestCode());
+		System.out.println(num.add(100, 200));
+
 
 		CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
 			return "Hello!Future!";

@@ -7,13 +7,12 @@ import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 
-import com.example.test.test_code.Test_Code;
+import com.example.test.test_code.TestCode;
 
 public class Tester {
 	ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 	PrintStream originalOut = System.out;
-	Test_Code test = new Test_Code();
-
+	TestCode test = new TestCode();
 	@Test
 	void addTest() throws InterruptedException {
 		int result = test.add(10, 20);
